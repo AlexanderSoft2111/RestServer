@@ -94,13 +94,18 @@ const usuariosPut = async(req = request, resp = response) => {
 const usuariosDelete = async(req = request, resp = response) => {
     const {id} = req.params;
 
+    //Extraemos el valor del usuario que esta en la request
+    const usuarioAutenticado = req.usuario;
     //Eliminar de forma fisica de la bd
     //const usuario = await Usuario.findByIdAndDelete(id);
 
     //Actualizar el estado
     const usuario = await Usuario.findByIdAndUpdate(id,{estado: false});
 
-    resp.json(usuario);
+    resp.json({
+        usuario,
+        usuarioAutenticado
+    });
 }
 
 const usuariosPatch = (req = request, resp = response) => {

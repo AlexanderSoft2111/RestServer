@@ -44,7 +44,8 @@ const usuarioSchema = Schema({
 usuarioSchema.methods.toJSON = function() {
 
     //Desestructuramos los valores que no queremos y con el operador express unimos las otras porpiedas en otro objeto
-    const {__var, password, ...usuario} = this.toObject();
+    const {__var, password, _id,...usuario} = this.toObject();
+    usuario.uid = _id;
     return usuario;
 }
 
