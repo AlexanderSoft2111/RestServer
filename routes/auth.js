@@ -1,7 +1,7 @@
 //Importacion del metodo router de express
 const {Router} = require('express');
 const { check } = require('express-validator');
-const { authPost } = require('../controllers/auth');
+const { authPost, googleSingIn } = require('../controllers/auth');
 const { validarCampos } = require('../middlewares/validarCampos');
 
 
@@ -12,5 +12,10 @@ router.post('/login',[
     check('password','La contraseña es obligatoria').not().isEmpty(),
     validarCampos
 ],authPost);
+
+router.post('/google',[
+    check('id_token', 'El id no debe ser vácio').not().isEmpty(),
+    validarCampos
+],googleSingIn);
 
 module.exports = router;
