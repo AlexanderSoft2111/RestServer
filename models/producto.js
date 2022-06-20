@@ -28,7 +28,8 @@ const productoSchema = Schema({
         required: true
     },
     descripcion: {type: String},
-    disponible: {type: Boolean, default: true}
+    disponible: {type: Boolean, default: true},
+    img: {type: String}
 });
 
 //Funcion para eliminar los datos que no queremos reflejar en la respuesta

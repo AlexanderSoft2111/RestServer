@@ -57,10 +57,21 @@ if(!idExistente){
 }
 }
 
+const coleccionValida = (coleccion = '', coleccionesValidas = []) => {
+
+  if(!coleccionesValidas.includes(coleccion)){
+
+    throw new Error(`La colección ${coleccion} no esta en las colecciones validas ${coleccionesValidas}`);
+  }
+
+  return true;
+}
+
 module.exports = {
     rolEsValido,
     emailExiste,
     existeById,
     existeCategoriaId,
-    existeproductoId
+    existeproductoId,
+    coleccionValida
 }
