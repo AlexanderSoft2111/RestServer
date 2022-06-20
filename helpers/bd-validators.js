@@ -1,3 +1,4 @@
+const { Categoria, Producto } = require('../models');
 const Role = require('../models/role');
 const Usuario = require('../models/usuario');
 
@@ -33,8 +34,33 @@ const emailExiste = async(correo = '') => {
   }
  }
 
+ //Validamos si existe el id en la bd de mongo
+ const existeCategoriaId = async(id = '') => {
+    
+    //Validamos que id exista enviandole el id
+    const idExistente = await Categoria.findById(id);
+ 
+  //Devolvemos un mensaje de error
+  if(!idExistente){
+    throw new Error(`No existe el id ${id} en la BD`);
+  }
+ }
+
+ const existeproductoId = async(id = '') => {
+    
+  //Validamos que id exista enviandole el id
+  const idExistente = await Producto.findById(id);
+
+//Devolvemos un mensaje de error
+if(!idExistente){
+  throw new Error(`No existe el id ${id} en la BD`);
+}
+}
+
 module.exports = {
     rolEsValido,
     emailExiste,
-    existeById
+    existeById,
+    existeCategoriaId,
+    existeproductoId
 }
